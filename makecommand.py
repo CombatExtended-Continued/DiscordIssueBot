@@ -1,13 +1,14 @@
 import requests
 import base64
 import json
+import getpass
 
 my_application_id = "918936936377372752"
 
 
 API_ENDPOINT = 'https://discord.com/api/v8'
-CLIENT_ID = input("Client ID")
-CLIENT_SECRET = input("Client Secret")
+CLIENT_ID = input("Client ID: ")
+CLIENT_SECRET = getpass.getpass("Client Secret: ")
 
 def get_token():
   data = {
@@ -72,6 +73,31 @@ commands = dict(
         description = "Get the status of the pending issue",
         type = 1,
         ),
+      dict(
+        name = "remove",
+        description = "Remove the Nth message or reference from the current issue",
+        type = 2,
+        options = [
+          dict(
+            name = "message",
+            description = "remove a message",
+            type = 1,
+            options = [
+              dict(
+                name = "message",
+                description = "the index of the message to remove",
+                type = 4,
+                required = False)]),
+          dict(
+            name = "reference",
+            description = "remove reference",
+            type = 1,
+            options = [
+              dict(
+                name = "text",
+                description = "the index of the reference to remove",
+                type = 4,
+                required = False)])]),          
       dict(
         name = "repository",
         description = "Get or set the GitHub repositry where issues are opened",
