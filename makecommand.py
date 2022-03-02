@@ -51,12 +51,25 @@ commands = dict(
             type = 3,
             required = True)]),
       dict(
-        name = "complete",
+        name = "help",
+        description = "display help on using the bot",
+        type = 1),
+      dict(
+        name = "preview",
         description = "mark an issue complete and ready for sending to GitHub",
         type = 1),
       dict(
         name = "submit",
         description = "submit the issue to GitHub",
+        type = 1),
+      dict(
+        name = "summary",
+        description = "set the issue summary",
+        options = [
+          dict(name="summary",
+               description = "The summary of the pending issue",
+               type=3,
+               required = True)],
         type = 1),
       dict(
         name = "add",
@@ -75,12 +88,12 @@ commands = dict(
         ),
       dict(
         name = "remove",
-        description = "Remove the Nth message or reference from the current issue",
+        description = "Remove the Nth message or reference from the current issue (0 indexed)",
         type = 2,
         options = [
           dict(
             name = "message",
-            description = "remove a message",
+            description = "remove the Nth message (0 indexed)",
             type = 1,
             options = [
               dict(
@@ -90,7 +103,7 @@ commands = dict(
                 required = False)]),
           dict(
             name = "reference",
-            description = "remove reference",
+            description = "remove the Nth reference (0 indexed)",
             type = 1,
             options = [
               dict(
